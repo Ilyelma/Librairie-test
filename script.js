@@ -38,8 +38,7 @@ form?.addEventListener('submit', async (e) => {
     const json = await res.json();
     if (!res.ok || !json.ok) throw new Error(json.error || 'Erreur');
 
-    const link = json?.blob?.url ? ` Voir le fichier: ${json.blob.url}` : '';
-    statusEl.textContent = 'Merci ! Votre demande a bien été envoyée.' + link;
+    statusEl.textContent = 'Merci ! Votre demande a bien été envoyée.';
     statusEl.hidden = false;
     form.reset();
   } catch (err) {
