@@ -60,7 +60,7 @@ export default async function handler(req, res) {
     const key = `listes/liste-${Date.now()}-${randomUUID()}.${ext}`;
 
     const blob = await put(key, buf, {
-      access: 'private', // 'public' si tu veux une URL directe
+      access: 'public', // 'public' si tu veux une URL directe
       contentType: f.mimetype || 'application/octet-stream'
     });
 
