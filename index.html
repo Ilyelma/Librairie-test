@@ -32,10 +32,10 @@
 <div class="field"><label for="email">Email (optionnel)</label><input id="email" name="email" type="email"></div></div>
 <div class="field"><label for="fichier">Liste de fourniture (PDF ou image)*</label><input id="fichier" name="fichier" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" required></div>
 <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="3" placeholder="Des demandes spécifiques"></textarea></div>
-<label class="consent">
+<div class="consent-row">
   <input id="consent" type="checkbox" required>
-  <span>J’accepte d’être contacté·e.</span>
-</label>
+  <label for="consent">J’accepte d’être contacté.</label>
+</div>
 <div class="actions"><button class="btn" type="submit">Envoyer</button><button class="btn ghost" id="sendWhatsApp" type="button">WhatsApp</button></div>
 <div id="formStatus" role="status" aria-live="polite" class="status" hidden></div>
 </form></div></section></main>
