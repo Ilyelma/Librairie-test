@@ -31,13 +31,25 @@ input:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}.btn:focus-visible{outline:3px solid var(--ring)}
 .site-footer{padding:28px 0;border-top:1px solid #eef0f4;background:#fff}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr;align-items:center}.foot-links{display:flex;gap:16px;justify-content:flex-end}.foot-links a{text-decoration:none;color:var(--ink);font-weight:600}
-label.consent {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 10px;
+/* Range la case + texte sur une seule ligne, à gauche */
+.consent-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  /* si ton formulaire utilise une grille 2 colonnes, ceci force la rangée à prendre toute la largeur */
+  grid-column: 1 / -1;
 }
-label.consent input[type="checkbox"] {
-  margin: 0;
+
+/* annule les styles globaux des labels pour CE label seulement */
+.consent-row label{
+  display:inline;           /* au lieu du display:flex global */
+  font-weight:600;
+  margin:0;
 }
+
+.consent-row input[type="checkbox"]{
+  margin:0;                 /* pas d’écart bizarre */
+}
+
 @media (max-width:900px){.hero-grid{grid-template-columns:1fr;text-align:center}.cta-row{justify-content:center}.cards{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;gap:12px}.foot-links{justify-content:flex-start}}
