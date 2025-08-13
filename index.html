@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Fournitures scolaires & Papeterie – Casablanca</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css"></head><body>
+<header class="site-header"><div class="container header-grid">
+  <a class="brand" href="#top"><div class="logo-circle">📚</div><span class="brand-text">Fournitures Scolaires Casablanca</span></a>
+  <nav class="main-nav"><a href="#services">Services</a><a href="#process">Process</a><a href="#devis" class="btn small">Devis</a></nav>
+</div></header>
+<div class="promo-bar"><div class="container promo-inner"><span class="promo-text">🚚 Livraison rapide à Casablanca • 💬 Devis gratuit</span><div class="promo-actions"><a class="btn mini" href="#devis">Demander un devis</a><button class="btn mini ghost" id="promo-wa" type="button">WhatsApp</button></div></div></div>
+<main id="top">
+<section class="hero"><div class="container hero-grid"><div class="hero-copy">
+<h1>Tout pour l’école, <span class="accent">livré chez vous</span> à Casablanca</h1>
+<p class="lead">Envoyez votre liste (photo/PDF), on s’occupe du reste.</p>
+<div class="cta-row"><a href="#devis" class="btn">Demander un devis</a><button id="cta-wa" class="btn ghost" type="button">Commander via WhatsApp</button></div>
+<p class="micro">Service chaleureux • Réponse rapide • Livraison locale</p>
+</div><svg class="hero-art" viewBox="0 0 400 280" aria-hidden="true"><rect x="0" y="0" width="400" height="280" rx="16" fill="#ffe9d6"/><rect x="24" y="24" width="352" height="40" rx="8" fill="#0e2440" opacity=".06"/><rect x="24" y="76" width="260" height="160" rx="12" fill="#ff7a00" opacity=".22"/></svg></div></section>
+<section id="services" class="section"><div class="container cards">
+<article class="card"><h3>Devis sur mesure</h3><p>Envoyez votre liste (photo, PDF). Réponse avec prix détaillé.</p></article>
+<article class="card"><h3>Préparation & contrôle</h3><p>Respect des marques et quantités. Qualité vérifiée.</p></article>
+<article class="card"><h3>Livraison à domicile</h3><p>Créneau qui vous arrange sur Casablanca.</p></article>
+</div></section>
+<section id="process" class="section alt"><div class="container"><h2>Comment ça marche</h2>
+<ol class="steps"><li><span class="badge">1</span> Préparez votre liste</li><li><span class="badge">2</span> Envoyez via formulaire ou WhatsApp</li><li><span class="badge">3</span> Recevez chez vous</li></ol>
+</div></section>
+<section id="devis" class="section"><div class="container narrow"><h2>Demander un devis</h2>
+<form id="devisForm" class="form" enctype="multipart/form-data" novalidate>
+<div class="grid-2"><div class="field"><label for="prenom">Prénom*</label><input id="prenom" name="prenom" required></div>
+<div class="field"><label for="nom">Nom*</label><input id="nom" name="nom" required></div></div>
+<div class="grid-2"><div class="field"><label for="tel">Téléphone*</label><input id="tel" name="tel" placeholder="+2126XXXXXXXX" required></div>
+<div class="field"><label for="email">Email (optionnel)</label><input id="email" name="email" type="email"></div></div>
+<div class="field"><label for="fichier">Liste (PDF / image)*</label><input id="fichier" name="fichier" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" required></div>
+<div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="3" placeholder="Marques, classes, quantités…"></textarea></div>
+<label class="consent"><input id="consent" type="checkbox" required> J’accepte d’être contacté·e.</label>
+<div class="actions"><button class="btn" type="submit">Envoyer</button><button class="btn ghost" id="sendWhatsApp" type="button">WhatsApp</button></div>
+<div id="formStatus" role="status" aria-live="polite" class="status" hidden></div>
+</form></div></section></main>
+<footer class="site-footer"><div class="container footer-grid"><div><strong>Fournitures Scolaires Casablanca</strong><br/>Service local, chaleureux et fiable.</div><div class="foot-links"><a href="#devis">Demander un devis</a><a href="#" id="footer-whatsapp">Commander par WhatsApp</a></div></div></footer>
+<script src="/script.js"></script></body></html>
