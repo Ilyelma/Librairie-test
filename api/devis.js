@@ -1,4 +1,45 @@
-import { put } from '@vercel/blob';import formidable from 'formidable';import fs from 'fs';import { randomUUID } from 'crypto';
-export const config={ api:{ bodyParser:false } };
-function parseForm(req){const form=formidable({ multiples:false, maxFileSize:10*1024*1024 });return new Promise((resolve,reject)=>{form.parse(req,(err,fields,files)=>err?reject(err):resolve({fields,files}));});}
-export default async function handler(req,res){if(req.method!=='POST'){res.setHeader('Allow','POST');return res.status(405).json({ok:false,error:'Méthode non autorisée'});}try{const {fields,files}=await parseForm(req);const prenom=(fields.prenom||'').toString().trim();const nom=(fields.nom||'').toString().trim();const tel=(fields.tel||'').toString().trim();if(!prenom||!nom||!tel)return res.status(400).json({ok:false,error:'Champs requis manquants'});const f=files.fichier;if(!f)return res.status(400).json({ok:false,error:'Fichier manquant'});const buf=fs.readFileSync(f.filepath);const ext=(f.originalFilename||'bin').split('.').pop();const key=`listes/liste-${Date.now()}-${randomUUID()}.${ext}`;const blob=await put(key,buf,{access:'private',contentType:f.mimetype||'application/octet-stream'});return res.status(200).json({ok:true,id:randomUUID(),blob:{url:blob.url,pathname:blob.pathname}});}catch(e){const msg=String(e?.message||'Erreur');const code=msg.includes('maxFileSize')?413:500;return res.status(code).json({ok:false,error:msg});}}
+import { put } from '@vercel/blob';
+import formidable from 'formidable';
+import fs from 'fs';
+import { randomUUID } from 'crypto';
+
+export const config = { api: { bodyParser: false } };
+
+function parseForm(req) {
+  const form = formidable({ multiples: false, maxFileSize: 10 * 1024 * 1024 }); // 10 Mo
+  return new Promise((resolve, reject) => {
+    form.parse(req, (err, fields, files) => (err ? reject(err) : resolve({ fields, files })));
+  });
+}
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({ ok: false, error: 'Méthode non autorisée' });
+  }
+  try {
+    const { fields, files } = await parseForm(req);
+    const prenom = (fields.prenom || '').toString().trim();
+    const nom    = (fields.nom || '').toString().trim();
+    const tel    = (fields.tel || '').toString().trim();
+    if (!prenom || !nom || !tel) return res.status(400).json({ ok:false, error:'Champs requis manquants' });
+
+    const f = files.fichier;
+    if (!f) return res.status(400).json({ ok:false, error:'Fichier manquant' });
+
+    const buf = fs.readFileSync(f.filepath);
+    const ext = (f.originalFilename || 'bin').split('.').pop();
+    const key = `listes/liste-${Date.now()}-${randomUUID()}.${ext}`;
+
+    const blob = await put(key, buf, {
+      access: 'private',                           // mets 'public' si tu veux une URL directe
+      contentType: f.mimetype || 'application/octet-stream'
+    });
+
+    return res.status(200).json({ ok: true, id: randomUUID(), blob: { url: blob.url, pathname: blob.pathname } });
+  } catch (e) {
+    const msg = String(e?.message || 'Erreur');
+    const code = msg.includes('maxFileSize') ? 413 : 500;
+    return res.status(code).json({ ok:false, error: msg });
+  }
+}
